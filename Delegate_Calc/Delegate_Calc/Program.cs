@@ -3,8 +3,26 @@
     ///Delegate Calculator
     ///
 {
+    public class MyEvent
+    {
+        public event ErrorDelegate Error = null;
+
+        public void InvokeEvent()
+        {
+            Error.Invoke();
+        }
+    }
+
     internal class Program
     {
+        private static void Handler()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Divide by zero");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+
         static void Main(string[] args)
         {
             Calculate calculateDelegate;
@@ -35,7 +53,18 @@
                         calculateDelegate = new Calculate(MathActions.Mult);
                         break;
                     case "/":
-                        calculateDelegate = new Calculate(MathActions.Div);
+
+                        if (b==0)
+                        {
+                            MyEvent instance = new MyEvent();
+                            instance.Error += Handler;
+                            instance.InvokeEvent();
+                        }
+                        else
+                        {
+                            calculateDelegate = new Calculate(MathActions.Div);
+                        }
+                        
                         break;
 
                     default:
@@ -44,7 +73,7 @@
                         break;
                 }
 
-                if (correctAction)
+                if (correctAction && (b!=0))
                 {
                     double result =  calculateDelegate.Invoke(a, b);
                     Console.WriteLine($"Result  is ->  {result}");
