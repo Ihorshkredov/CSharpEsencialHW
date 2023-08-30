@@ -3,21 +3,11 @@
     ///Delegate Calculator
     ///
 {
-
-    public delegate void ErrorDelegate();
-
-    public class MyEvent
-    {
-        public event ErrorDelegate Error = null;
-
-        public void InvokeEvent()
-        {
-            Error.Invoke();
-        }
-    }
-
+    
     internal class Program
     {
+        
+        
         private static void Handler()
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -28,6 +18,8 @@
 
         static void Main(string[] args)
         {
+            MathActions.DevideByZeroEvent += Handler;
+            
             Calculate calculateDelegate;
 
             Console.Write("Enter first value \'A\': ");
@@ -56,18 +48,7 @@
                         calculateDelegate = new Calculate(MathActions.Mult);
                         break;
                     case "/":
-
-                        if (b==0)
-                        {
-                            MyEvent instance = new MyEvent();
-                            instance.Error += Handler;
-                            instance.InvokeEvent();
-                        }
-                        else
-                        {
                             calculateDelegate = new Calculate(MathActions.Div);
-                        }
-                        
                         break;
 
                     default:
@@ -76,9 +57,9 @@
                         break;
                 }
 
-                if (correctAction && (b!=0))
+                if (correctAction)
                 {
-                    double result =  calculateDelegate.Invoke(a, b);
+                    double? result =  calculateDelegate.Invoke(a, b);
                     Console.WriteLine($"Result  is ->  {result}");
                 } 
             }

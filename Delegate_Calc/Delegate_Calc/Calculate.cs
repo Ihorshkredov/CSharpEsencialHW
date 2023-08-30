@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Delegate_Calc
 {
-    public delegate double Calculate(double a, double b);
+    public delegate double? Calculate(double a, double b);
 }
