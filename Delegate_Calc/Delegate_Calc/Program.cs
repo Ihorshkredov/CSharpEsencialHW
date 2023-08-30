@@ -3,6 +3,9 @@
     ///Delegate Calculator
     ///
 {
+
+    public delegate void ErrorDelegate();
+
     public class MyEvent
     {
         public event ErrorDelegate Error = null;
