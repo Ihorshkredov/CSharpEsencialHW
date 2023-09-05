@@ -13,48 +13,21 @@ namespace ExeptionHW
 
         public void SendMail(Candidate person)
         {
-            Exception ToYoungException = new Exception("Candidate is to young");
-            ToYoungException.Data.Add("Age", person.Age);
+            //Exception ToYoungException = new Exception("Candidate is to young");
+            //ToYoungException.Data.Add("Age", person.Age);
 
-            try
-            {
-                if (person.Age <= 18)
-                {
-                    throw ToYoungException;
-                }
-                else
-                {
-                    bool personHired = department.HirePerson(person);
-                    if (personHired)
-                    {
-                        SendMailToSuccessCandidate(person);
-                        Double salary = department.CountSalary(person);
-                        int bonus = department.CountBonus(person);
-                        SendSalaryMessage(salary);
-
-                    }
-                    else
-                    {
-                        SendMailToFailedCandidate(person);
-                    }
-                }
-
-            }
-            catch (DivideByZeroException e)
-            {
-                
-                Console.WriteLine("Error Message: Devide by zero was done");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                foreach (DictionaryEntry item in ex.Data)
-                {
-                    Console.WriteLine($"{item.Key} - {item.Value}");
-                }
-            }
-            
-
+          bool personHired = department.HirePerson(person);
+             if (personHired)
+             {
+               SendMailToSuccessCandidate(person);
+               Double salary = department.CountSalary(person);
+               int bonus = department.CountBonus(person);
+               SendSalaryMessage(salary);
+             }
+             else
+             {
+                SendMailToFailedCandidate(person);
+             }
         }
 
 

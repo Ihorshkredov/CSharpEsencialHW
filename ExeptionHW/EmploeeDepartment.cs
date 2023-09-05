@@ -9,7 +9,18 @@ namespace ExeptionHW
 {
     public  class EmploeeDepartment
     {
-       public  bool HirePerson(Candidate person) => (person.Expirience * 100) / person.Age < 20 ? false : true;
+        public bool HirePerson(Candidate person)
+        {
+            if (person.Age % 2 == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+            //(person.Expirience * 100) / person.Age < 20 ? false : true;
 
         public  double CountSalary(Candidate person)
         {           
@@ -18,7 +29,7 @@ namespace ExeptionHW
         }
         public int CountBonus(Candidate person)
         {
-            return 20/person.Expirience - 10;
+            return (20 - 20/person.Expirience);
         }
     }
 }
