@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,24 +10,26 @@ namespace ExeptionHW
 {
     public  class MailSender
     {
-        EmploeeDepartment department = new EmploeeDepartment();
+       
 
-        public void SendMail(Candidate person)
+        public void SendMail(Candidate candidate)
         {
-            //Exception ToYoungException = new Exception("Candidate is to young");
-            //ToYoungException.Data.Add("Age", person.Age);
 
-          bool personHired = department.HirePerson(person);
-             if (personHired)
+ 
+             if (EmploeeDepartment.HirePerson(candidate))
              {
-               SendMailToSuccessCandidate(person);
-               Double salary = department.CountSalary(person);
-               int bonus = department.CountBonus(person);
+                if (candidate.Age <= 18)
+                {
+                    throw new ToYoungException(candidate.Age, "To young exception. Age less than 18");
+                }
+                SendMailToSuccessCandidate(candidate);
+               Double salary = EmploeeDepartment.CountSalary(candidate);
+               int bonus = EmploeeDepartment.CountBonus(candidate);
                SendSalaryMessage(salary);
              }
              else
              {
-                SendMailToFailedCandidate(person);
+                SendMailToFailedCandidate(candidate);
              }
         }
 

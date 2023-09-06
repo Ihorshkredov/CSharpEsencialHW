@@ -7,29 +7,19 @@ using System.Threading.Tasks;
 
 namespace ExeptionHW
 {
-    public  class EmploeeDepartment
+    public static class EmploeeDepartment
     {
-        public bool HirePerson(Candidate person)
-        {
-            if (person.Age % 2 == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-            //(person.Expirience * 100) / person.Age < 20 ? false : true;
+        public static bool HirePerson(Candidate candidate) => (candidate.Age % 2 == 0);
 
-        public  double CountSalary(Candidate person)
+
+        public static  double CountSalary(Candidate candidate)
         {           
-            double basePayment = 300 + person.Expirience * 100;
+            double basePayment = 300 + candidate.Expirience * 100;
             return basePayment;
         }
-        public int CountBonus(Candidate person)
+        public static int CountBonus(Candidate candidate)
         {
-            return (20 - 20/person.Expirience);
+            return (20 - 20/candidate.Expirience);
         }
     }
 }
