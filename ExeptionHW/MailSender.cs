@@ -12,25 +12,19 @@ namespace ExeptionHW
     {
        
 
-        public void SendMail(Candidate candidate)
+        public void SendMail(Dictionary<Candidate,bool> listOfCandidates)
         {
-
- 
-             if (EmploeeDepartment.HirePerson(candidate))
-             {
-                if (candidate.Age <= 18)
+            foreach (var candidate in listOfCandidates) 
+            {
+                if (candidate.Value)
                 {
-                    throw new ToYoungException(candidate.Age, "To young exception. Age less than 18");
+                    SendMailToSuccessCandidate(candidate.Key);
                 }
-                SendMailToSuccessCandidate(candidate);
-               Double salary = EmploeeDepartment.CountSalary(candidate);
-               int bonus = EmploeeDepartment.CountBonus(candidate);
-               SendSalaryMessage(salary);
-             }
-             else
-             {
-                SendMailToFailedCandidate(candidate);
-             }
+                else
+                {
+                    SendMailToFailedCandidate(candidate.Key);
+                }
+            }       
         }
 
 

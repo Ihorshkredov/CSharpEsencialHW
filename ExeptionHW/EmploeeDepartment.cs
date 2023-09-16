@@ -9,7 +9,18 @@ namespace ExeptionHW
 {
     public static class EmploeeDepartment
     {
-        public static bool HirePerson(Candidate candidate) => (candidate.Age % 2 == 0);
+        public static Dictionary<Candidate,  bool> HirePersonsList(int quote, List<Candidate> candidates)
+        {
+            SortedDictionary<Candidate , bool> result = new SortedDictionary<Candidate , bool>();
+            foreach (Candidate candidate in candidates) 
+            {
+                bool hired = (candidate.Expirience * 100 / candidate.Age) > 10 && quote-- > 0;
+                result[candidate] = hired;     
+            }
+
+           return (Dictionary<Candidate,bool>) result.OrderBy(x => x.Key.Expirience);
+            
+        }
 
 
         public static  double CountSalary(Candidate candidate)

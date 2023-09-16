@@ -13,19 +13,28 @@
                 new Candidate(16, "Roy Rojers", 1),
                 new Candidate(20, "Steeven Strange", 0)
             };
-            MailSender mailSender = new MailSender();
 
-            foreach (var member in hireGroup) 
+            List<Candidate> candidatelist = new List<Candidate>()
             {
+                new Candidate(35, "Arni Shwartsneger",10),
+                new Candidate(40, "Mahamad Ali", 15),
+                new Candidate(35, "Tony Stark", 20),
+                new Candidate(35, "Roy Rojers", 8)
+            };
+
+            
+
+
+            MailSender mailSender = new MailSender();
 
                 try
                 {
-                    mailSender.SendMail(member);
+                    mailSender.SendMail(EmploeeDepartment.HirePersonsList(2,candidatelist));
                 }
                 catch (DivideByZeroException e)
                 {
                     Console.ForegroundColor= ConsoleColor.Red;
-                    Console.WriteLine($"\n Catched devide on zero exception for {member.Name}");
+                    Console.WriteLine($"\n Catched devide on zero exception ");
                     Console.WriteLine(e.Message);
                     Console.ResetColor();
 
@@ -33,7 +42,7 @@
                 catch (ToYoungException e)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"\n Catched  exception of small age for {member.Name}");
+                    Console.WriteLine($"\n Catched  exception of small age ");
                     Console.WriteLine(e.Message);
                     Console.ResetColor();
 
@@ -41,12 +50,11 @@
 
                 catch (Exception e)
                 {
-                    Console.WriteLine($"\nError by processing {member.Name}");
+                    Console.WriteLine($"\nError by processing ");
                     Console.WriteLine(e.Message);
                 }
                  
-    
-            }
+  
         }
     }
 }
