@@ -14,8 +14,9 @@ namespace ExeptionHW
             SortedDictionary<Candidate , bool> result = new SortedDictionary<Candidate , bool>();
             foreach (Candidate candidate in candidates) 
             {
-                bool hired = (candidate.Expirience * 100 / candidate.Age) > 10 && quote-- > 0;
-                result[candidate] = hired;     
+                bool hired = (candidate.Expirience * 100 / candidate.Age) > 10 && quote > 0;
+                result[candidate] = hired;
+                quote--;
             }
 
            return (Dictionary<Candidate,bool>) result.OrderBy(x => x.Key.Expirience);
