@@ -22,10 +22,9 @@ namespace ExeptionHW
                 new Candidate(35, "Arni Shwartsneger",2),
                 new Candidate(40, "Mahamad Ali", 15),
                 new Candidate(35, "Tony Stark", 20),
-                new Candidate(35, "Roy Rojers", 8)
+                new Candidate(35, "Roy Rojers", 8),
+                new Candidate(50, "Ker Laeda",30)
             };
-
-            
 
 
             MailSender mailSender = new MailSender();

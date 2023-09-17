@@ -9,26 +9,16 @@ namespace ExeptionHW
 {
     public static class EmploeeDepartment
     {
-        public static Dictionary<Candidate,  bool> HirePersonsList(int quote, List<Candidate> candidates)
+        public static SortedDictionary<Candidate,  bool> HirePersonsList(int quote, List<Candidate> candidates)
         {
-            Dictionary<Candidate , bool> result = new Dictionary<Candidate , bool>();
-            foreach (Candidate candidate in candidates) 
+           Dictionary<Candidate , bool>  result = new Dictionary<Candidate , bool>();
+
+            for (int i = 0; i < candidates.Count; i++)
             {
-                if ((candidate.Expirience * 100 / candidate.Age > 10)&(quote > 0))
-                {
-                    result[candidate] = true;
-                    quote--;
-                }
-                else
-                {
-                    result[candidate] = false;
-                } 
+                result[candidates[i]] = (i <= quote) && (candidates[i].Expirience * 100 / candidates[i].Age > 10);
             }
-
-            return result; 
-
-             
           
+           return  new SortedDictionary<Candidate , bool>(result, new PersonComparer());     
         }
 
 
@@ -46,10 +36,9 @@ namespace ExeptionHW
 
     public class PersonComparer : IComparer<Candidate>
     {
-
         public int Compare(Candidate? x, Candidate? y)
         {
-            return x.Age - y.Age;
+            return y.Expirience - x.Expirience;
         }
     }
 }

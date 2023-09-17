@@ -12,7 +12,7 @@ namespace ExeptionHW
     {
        
 
-        public void SendMail(Dictionary<Candidate,bool> listOfCandidates)
+        public void SendMail(SortedDictionary<Candidate,bool> listOfCandidates)
         {
             foreach (var candidate in listOfCandidates) 
             {
@@ -24,7 +24,8 @@ namespace ExeptionHW
                 {
                     SendMailToFailedCandidate(candidate.Key);
                 }
-            }       
+            }
+            DisplayStatistic(listOfCandidates);
         }
 
 
@@ -47,6 +48,13 @@ namespace ExeptionHW
          void SendSalaryMessage(double salary)
         {
             Console.WriteLine($"Your salary will be :{salary} USD");
+        }
+
+        void DisplayStatistic(SortedDictionary<Candidate, bool> listOfCandidates)
+        {
+            Console.WriteLine(new string('_', 50));
+            int hiredQty = listOfCandidates.Where( candidate => candidate.Value==true).Count();
+            Console.WriteLine($" This time were {listOfCandidates.Count} candidates. Hired: {hiredQty}");   
         }
 
         
