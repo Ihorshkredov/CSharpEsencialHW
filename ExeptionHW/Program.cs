@@ -1,4 +1,7 @@
-﻿namespace ExeptionHW
+﻿using System.Collections;
+
+
+namespace ExeptionHW
 {
 
     internal class Program
@@ -16,7 +19,7 @@
 
             List<Candidate> candidatelist = new List<Candidate>()
             {
-                new Candidate(35, "Arni Shwartsneger",10),
+                new Candidate(35, "Arni Shwartsneger",2),
                 new Candidate(40, "Mahamad Ali", 15),
                 new Candidate(35, "Tony Stark", 20),
                 new Candidate(35, "Roy Rojers", 8)
@@ -57,4 +60,6 @@
   
         }
     }
+
+   
 }

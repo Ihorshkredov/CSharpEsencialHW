@@ -11,7 +11,7 @@ namespace ExeptionHW
     {
         public static Dictionary<Candidate,  bool> HirePersonsList(int quote, List<Candidate> candidates)
         {
-            SortedDictionary<Candidate , bool> result = new SortedDictionary<Candidate , bool>();
+            Dictionary<Candidate , bool> result = new Dictionary<Candidate , bool>();
             foreach (Candidate candidate in candidates) 
             {
                 if ((candidate.Expirience * 100 / candidate.Age > 10)&(quote > 0))
@@ -25,7 +25,10 @@ namespace ExeptionHW
                 } 
             }
 
-           return (Dictionary<Candidate,bool>) result.OrderBy(x => x.Key.Expirience);  
+            return result; 
+
+             
+          
         }
 
 
@@ -37,6 +40,16 @@ namespace ExeptionHW
         public static int CountBonus(Candidate candidate)
         {
             return (20 - 20/candidate.Expirience);
+        }
+    }
+
+
+    public class PersonComparer : IComparer<Candidate>
+    {
+
+        public int Compare(Candidate? x, Candidate? y)
+        {
+            return x.Age - y.Age;
         }
     }
 }
