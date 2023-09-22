@@ -1,0 +1,14 @@
+﻿<Window x:Class="Formatter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Formatter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="212" Width="800">
+    <Grid Margin="10,0,0,0" Height="200" VerticalAlignment="Top">
+        <Button Content="Check" HorizontalAlignment="Center" Margin="0,115,0,0" VerticalAlignment="Top" Height="30" Width="60" Click="Button_Click" />
+        <TextBox x:Name="txtBox1" HorizontalAlignment="Center" Margin="0,56,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="368" Height="28"/>
+
+    </Grid>
+</Window>
